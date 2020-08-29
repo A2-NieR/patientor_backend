@@ -1,23 +1,26 @@
-import express from "express";
-import cors from "cors";
+import express from 'express';
+import cors from 'cors';
+import * as dotenv from 'dotenv';
 
-import diagnoseRouter from "./routes/diagnosis";
-import patientRouter from "./routes/patients";
+import diagnoseRouter from './routes/diagnosis';
+import patientRouter from './routes/patients';
 
 const app = express();
 app.use(express.json());
 app.use(cors());
 
-const PORT = 3001;
+dotenv.config();
+// eslint-disable-next-line no-undef
+const PORT = process.env.PORT || 3001;
 
-app.get("/api/ping", (_req, res) => {
-  console.log("Ping!");
-  res.send("pong");
+app.get('/api/ping', (_req, res) => {
+	console.log('Ping!');
+	res.send('pong');
 });
 
-app.use("/api/diagnosis", diagnoseRouter);
-app.use("/api/patients", patientRouter);
+app.use('/api/diagnosis', diagnoseRouter);
+app.use('/api/patients', patientRouter);
 
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+	console.log(`Server running on port ${PORT}`);
 });
