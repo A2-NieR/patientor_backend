@@ -13,10 +13,7 @@ dotenv.config();
 // eslint-disable-next-line no-undef
 const PORT = process.env.PORT || 3001;
 
-app.get('/api/ping', (_req, res) => {
-	console.log('Ping!');
-	res.send('pong');
-});
+app.use(express.static('build/frontend'));
 
 app.use('/api/diagnosis', diagnoseRouter);
 app.use('/api/patients', patientRouter);

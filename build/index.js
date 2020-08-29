@@ -33,10 +33,7 @@ app.use(cors_1.default());
 dotenv.config();
 // eslint-disable-next-line no-undef
 const PORT = process.env.PORT || 3001;
-app.get('/api/ping', (_req, res) => {
-    console.log('Ping!');
-    res.send('pong');
-});
+app.use(express_1.default.static('build/frontend'));
 app.use('/api/diagnosis', diagnosis_1.default);
 app.use('/api/patients', patients_1.default);
 app.listen(PORT, () => {
